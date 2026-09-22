@@ -1,0 +1,6 @@
+fastapi
+pydantic-settings
+sqlalchemy
+alembic
+pwdlib[argon2]
+pyjwt
