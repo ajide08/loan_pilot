@@ -1,6 +1,13 @@
 fastapi
+uvicorn
+email-validator
 pydantic-settings
 sqlalchemy
 alembic
 pwdlib[argon2]
 pyjwt
+pytest
+pytest-asyncio
+httpx2
+asyncpg
+aiosqlite

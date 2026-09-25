@@ -8,7 +8,7 @@ class User(Base):
     email = Column(String(225), unique=True, nullable=False)
     password_hash = Column(String(225), nullable=False)
     full_name = Column(String(225), unique=True,  nullable=False)
-    role = Column()
+    role = Column(String(50), nullable=False, default='SYSTEM_ADMIN')
     is_active = Column(Boolean, default=True, nullable=False)
     created_at = Column(DateTime, default=datetime.utcnow, nullable=False)
 
