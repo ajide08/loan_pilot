@@ -11,3 +11,4 @@ pytest-asyncio
 httpx2
 asyncpg
 aiosqlite
+psycopg[binary]

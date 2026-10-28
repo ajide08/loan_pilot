@@ -33,7 +33,7 @@ def register(
         full_name=user.full_name,
         email=user.email,
         password_hash=hash_password(user.password),
-        role=user.role,
+        role=getattr(user, 'role', 'BORROWER') or 'BORROWER',
     )
 
     db.add(new_user)

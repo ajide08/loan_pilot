@@ -1,0 +1,30 @@
+services:
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_DB: loanpilot
+      POSTGRES_USER: loanpilot
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in your .env file}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/dat
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U loanpilot -d loanpilot"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  api:
+    build: .
+    ports:
+      - "8002:8000"
+    environment:
+      DATABASE_URL: postgresql+psycopg://loanpilot:${POSTGRES_PASSWORD}@db:5432/loanpilot
+      SECRET_KEY: ${SECRET_KEY:?Set SECRET_KEY in your .env file}
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  postgres_data:
